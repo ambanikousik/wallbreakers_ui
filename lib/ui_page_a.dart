@@ -3,8 +3,6 @@ import 'widgets.dart';
 import 'data/data.dart';
 
 class UiPageA extends StatefulWidget {
-  UiPageA({Key key}) : super(key: key);
-
   @override
   _UiPageAState createState() => _UiPageAState();
 }
@@ -26,12 +24,13 @@ class _UiPageAState extends State<UiPageA> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize().init(context);
     return Scaffold(
       appBar: CustomAppBar(
         title: 'Service Provider',
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: width * 4),
+        margin: EdgeInsets.symmetric(horizontal: width * 6),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
