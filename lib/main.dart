@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:wallbreakersui/ui_login.dart';
 import 'package:wallbreakersui/ui_page_b.dart';
 import 'package:wallbreakersui/ui_page_c.dart';
 import 'package:wallbreakersui/ui_page_d.dart';
 import 'package:wallbreakersui/ui_page_e.dart';
+import 'package:wallbreakersui/ui_signup.dart';
 //import 'ui_page_a.dart';
 
 void main() {
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: UiPageE(),
+      home: signUp(),
     );
   }
 }
