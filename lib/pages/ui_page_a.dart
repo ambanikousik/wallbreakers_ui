@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
+import '../widgets.dart';
+import '../data/data.dart';
+import '../model/models.dart';
 
 class UiPageA extends StatefulWidget {
   @override
@@ -8,6 +9,20 @@ class UiPageA extends StatefulWidget {
 }
 
 class _UiPageAState extends State<UiPageA> {
+
+
+  List<Day> days = [
+    Day(day: 'S',isSelected: false),
+    Day(day: 'M',isSelected: false),
+    Day(day: 'T',isSelected: false),
+    Day(day: 'W',isSelected: false),
+    Day(day: 'T',isSelected: false),
+    Day(day: 'F',isSelected: false),
+    Day(day: 'S',isSelected: false),
+  ];
+
+
+
   CustomTextFieldController _name = CustomTextFieldController();
   CustomTextFieldController _address = CustomTextFieldController();
   CustomTextFieldController _occupation = CustomTextFieldController();
@@ -30,7 +45,6 @@ class _UiPageAState extends State<UiPageA> {
         title: 'Service Provider',
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: width * 6),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -39,47 +53,51 @@ class _UiPageAState extends State<UiPageA> {
                 child: Column(
                   children: <Widget>[
                     InAppTitle(title: 'Information',),
-                    Column(
-                      children: <Widget>[
-                        CustomTextField(
-                          title: "Name",
-                          controller: _name,
-                          validate: Validate.withOption(
-                            isRequired: true,
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: width * 6),
+                      child: Column(
+                        children: <Widget>[
+                          CustomTextField(
+                            title: "Name",
+                            controller: _name,
+                            validate: Validate.withOption(
+                              isRequired: true,
+                            ),
                           ),
-                        ),
-                        CustomTextField(
-                          title: "Address",
-                          controller: _address,
-                          validate: Validate.withOption(
-                            isRequired: true,
+                          CustomTextField(
+                            title: "Address",
+                            controller: _address,
+                            validate: Validate.withOption(
+                              isRequired: true,
+                            ),
                           ),
-                        ),
-                        CustomDropDownList<String>(
-                          title: "Occupation",
-                          controller: _occupation,
-                          loadData:() async => ["Student","Teacher","Staff"],
-                          displayName:(x)=> x,
-                          validate: Validate.withOption(
-                            isRequired: true,
+                          CustomDropDownList<String>(
+                            title: "Occupation",
+                            controller: _occupation,
+                            loadData:() async => ["Student","Teacher","Staff"],
+                            displayName:(x)=> x,
+                            validate: Validate.withOption(
+                              isRequired: true,
+                            ),
                           ),
-                        ),
-                        CustomTextField(
-                          title: "Age",
-                          controller: _age,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                            isNumber: true
+                          CustomTextField(
+                            title: "Age",
+                            controller: _age,
+                            validate: Validate.withOption(
+                              isRequired: true,
+                              isNumber: true
+                            ),
                           ),
-                        ),
-                        CustomSwitch(
-                          title: "Is Active",
-                          isEnabled: _regular,
-                          onChange: (x){ _regular = x;},
-                        ),
+                          CustomSwitch(
+                            title: "Is Active",
+                            isEnabled: _regular,
+                            onChange: (x){ _regular = x;},
+                          ),
 
-                      ],
+                        ],
+                      ),
                     ),
+                    CustomDatePicker(days: days,),
                   ],
                 ),
               ),
@@ -106,6 +124,8 @@ class _UiPageAState extends State<UiPageA> {
                       if(_validate()){
                         print('${_name.text}\n${_address.text}\n${_occupation.text}\n${_age.text}\n$_regular');
                       }
+                      print('selected days: ');
+                      days.forEach((day) { if(day.isSelected){print('${day.day}'); }});
                       },
                   ),
                 ),
