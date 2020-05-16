@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'widgets.dart';
 import 'data/data.dart';
-
-class Staff2 extends StatefulWidget {
+class SocialInfo extends StatefulWidget {
   @override
-  _Staff2State createState() => _Staff2State();
+  _SocialInfoState createState() => _SocialInfoState();
 }
 
-class _Staff2State extends State<Staff2> {
-  CustomTextFieldController _dateOfBirth = CustomTextFieldController();
-  CustomTextFieldController _startDate = CustomTextFieldController();
-  CustomTextFieldController _endDate = CustomTextFieldController();
-  CustomTextFieldController _uploadPhoto = CustomTextFieldController();
-  CustomTextFieldController _selectRole = CustomTextFieldController();
-  CustomTextFieldController _timeInterval = CustomTextFieldController();
-  bool _locationUpdateRequirement = true;
-  bool _showAsTeamMember = true;
-  bool _suspendIssue = true;
+class _SocialInfoState extends State<SocialInfo> {
+  CustomTextFieldController _casteName = CustomTextFieldController();
+  CustomTextFieldController _bplStudent = CustomTextFieldController();
+  CustomTextFieldController _motherTongue = CustomTextFieldController();
+  CustomTextFieldController _religion = CustomTextFieldController();
+  CustomTextFieldController _offeringsTaken = CustomTextFieldController();
+  CustomTextFieldController _additionalInfo = CustomTextFieldController();
+
+
+
 
 
   bool _validate() {
-    return _dateOfBirth.isValid &&
-        _startDate.isValid &&
-        _endDate.isValid &&
-        _uploadPhoto.isValid &&
-        _selectRole.isValid &&
-        _timeInterval.isValid ;
+    return _casteName.isValid &&
+        _bplStudent.isValid &&
+        _motherTongue.isValid &&
+        _religion.isValid &&
+        _offeringsTaken.isValid &&
+        _additionalInfo.isValid;
 
 
   }
@@ -34,7 +33,7 @@ class _Staff2State extends State<Staff2> {
     ScreenSize().init(context);
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Garden Square',
+        title: '24 c, 7th Street',
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: width * 6),
@@ -45,70 +44,58 @@ class _Staff2State extends State<Staff2> {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    InAppTitle(title: 'Staff',),
+                    InAppTitle(title: 'Social Info',),
                     Column(
                       children: <Widget>[
 
 
                         CustomTextField(
-                          title: "Date Of Birth",
-                          controller: _dateOfBirth,
+                          title: "Caste Name",
+                          controller: _casteName,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
                         ),
                         CustomTextField(
-                          title: "Start Date",
-                          controller: _startDate,
+                          title: "Bpl Student",
+                          controller: _bplStudent,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
                         ),
                         CustomTextField(
-                          title: "End Date",
-                          controller: _endDate,
+                          title: "Selet mother tongue",
+                          controller: _motherTongue,
+                          validate: Validate.withOption(
+                            isRequired: true,
+
+                          ),
+                        ),
+                        CustomTextField(
+                          title: "Select Religion",
+                          controller: _religion,
+                          validate: Validate.withOption(
+                            isRequired: true,
+
+                          ),
+                        ),
+                        CustomTextField(
+                          title: "Select Offerings Taken",
+                          controller: _offeringsTaken,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
                         ),
                         CustomTextField(
-                          title: "Upload Photo",
-                          controller: _uploadPhoto,
+                          title: "Enter additional info",
+                          controller: _additionalInfo,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
                         ),
-                        CustomDropDownList<String>(
-                          title: "Select Role",
-                          controller: _selectRole,
-                          loadData:() async => ["A","B","C"],
-                          displayName:(x)=> x,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
-                        CustomTextField(
-                          title: "Time Interval",
-                          controller: _timeInterval,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
-                        CustomSwitch(
-                          title: "Location Update Required?",
-                          isEnabled: _locationUpdateRequirement,
-                          onChange: (x){ _locationUpdateRequirement = x;},
-                        ),
-                        CustomSwitch(
-                          title: "Show as a Team Member",
-                          isEnabled: _showAsTeamMember,
-                          onChange: (x){ _showAsTeamMember = x;},
-                        ),
-                        CustomSwitch(
-                          title: "Suspand Issue",
-                          isEnabled: _suspendIssue,
-                          onChange: (x){ _suspendIssue = x;},
-                        ),
+
+
+
 
 
 
@@ -129,7 +116,7 @@ class _Staff2State extends State<Staff2> {
               children: <Widget>[
                 Expanded(
                   child: CustomActionButton(
-                    title: "Save",
+                    title: "Cancel",
                     isExpanded: true,
                     isOutline: true,
                     margin: EdgeInsets.only(left: 24, bottom: 24, right: 8, top: 44),
@@ -140,12 +127,12 @@ class _Staff2State extends State<Staff2> {
                 ),
                 Expanded(
                   child: CustomActionButton(
-                    title: "Next",
+                    title: "Save",
                     isExpanded: true,
                     margin: EdgeInsets.only(left: 8, bottom: 24, right:24, top: 44),
                     onTap: (){
                       if(_validate()){
-                        print('${_dateOfBirth.text}\n${_startDate.text}\n${_endDate.text}\n${_uploadPhoto.text}\n${_selectRole.text}\n${_timeInterval.text}\n$_locationUpdateRequirement\n$_showAsTeamMember\n$_suspendIssue');
+                        print('${_casteName.text}\n${_bplStudent.text}\n${_motherTongue.text}\n${_religion.text}\n${_offeringsTaken.text}\n${_additionalInfo.text}');
                       }
                     },
                   ),
