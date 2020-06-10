@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
-class Shift4 extends StatefulWidget {
+import '../widgets.dart';
+import '../data/data.dart';
+class ShiftPlaning extends StatefulWidget {
   @override
-  _Shift4State createState() => _Shift4State();
+  _ShiftPlaningState createState() => _ShiftPlaningState();
 }
 
-class _Shift4State extends State<Shift4> {
-
+class _ShiftPlaningState extends State<ShiftPlaning> {
+  CustomTextFieldController _shiftType = CustomTextFieldController();
+  CustomTextFieldController _shiftName = CustomTextFieldController();
   CustomTextFieldController _startTime = CustomTextFieldController();
   CustomTextFieldController _endTime = CustomTextFieldController();
 
 
   bool _validate() {
     return _startTime.isValid &&
-
+        _shiftName.isValid &&
+        _shiftType.isValid &&
         _endTime.isValid ;
 
   }
@@ -38,7 +40,22 @@ class _Shift4State extends State<Shift4> {
                     Column(
                       children: <Widget>[
 
-
+                        CustomDropDownList<String>(
+                          title: "Shift Type",
+                          controller: _shiftType,
+                          loadData:() async => ["General","Other"],
+                          displayName:(x)=> x,
+                          validate: Validate.withOption(
+                            isRequired: true,
+                          ),
+                        ),
+                        CustomTextField(
+                          title: "Shift Name",
+                          controller: _shiftName,
+                          validate: Validate.withOption(
+                            isRequired: true,
+                          ),
+                        ),
                         CustomTextField(
                           title: "Start Time",
                           controller: _startTime,
@@ -82,7 +99,7 @@ class _Shift4State extends State<Shift4> {
                     margin: EdgeInsets.only(left: 8, bottom: 24, right:24, top: 44),
                     onTap: (){
                       if(_validate()){
-                        print('${_startTime.text}\n${_endTime.text}');
+                        print('${_shiftType.text}\n${_shiftName.text}\n${_startTime.text}\n${_endTime.text}');
                       }
                     },
                   ),

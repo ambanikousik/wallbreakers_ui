@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
+import '../widgets.dart';
+import '../data/data.dart';
 class Stuff extends StatefulWidget {
   @override
   _StuffState createState() => _StuffState();
 }
 
 class _StuffState extends State<Stuff> {
-  CustomTextFieldController _name = CustomTextFieldController();
+  CustomTextFieldController _firstName = CustomTextFieldController();
   CustomTextFieldController _emailAddress = CustomTextFieldController();
   CustomTextFieldController _contactNumber = CustomTextFieldController();
   CustomTextFieldController _address = CustomTextFieldController();
-  CustomTextFieldController _serviceOffered = CustomTextFieldController();
-  CustomTextFieldController _selectService = CustomTextFieldController();
+  CustomTextFieldController _lastName = CustomTextFieldController();
+  CustomTextFieldController _middlename = CustomTextFieldController();
 
 
   bool _validate() {
-    return _name.isValid &&
+    return _firstName.isValid &&
         _emailAddress.isValid &&
         _contactNumber.isValid &&
         _address.isValid &&
-        _serviceOffered.isValid &&
-        _selectService.isValid ;
+        _lastName.isValid &&
+        _middlename.isValid ;
 
 
   }
@@ -44,11 +44,24 @@ class _StuffState extends State<Stuff> {
                     InAppTitle(title: 'Staff',),
                     Column(
                       children: <Widget>[
-
+                        CustomTextField(
+                          title: "First Name",
+                          controller: _firstName,
+                          validate: Validate.withOption(
+                            isRequired: true,
+                          ),
+                        ),
+                        CustomTextField(
+                          title: "Last Name",
+                          controller: _lastName,
+                          validate: Validate.withOption(
+                            isRequired: true,
+                          ),
+                        ),
 
                         CustomTextField(
-                          title: "Name",
-                          controller: _name,
+                          title: "Middle Name",
+                          controller: _middlename,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
@@ -76,22 +89,8 @@ class _StuffState extends State<Stuff> {
                             isRequired: true,
                           ),
                         ),
-                        CustomTextField(
-                          title: "Service Offered",
-                          controller: _serviceOffered,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
-                        CustomDropDownList<String>(
-                          title: "Select Service",
-                          controller: _selectService,
-                          loadData:() async => ["A","B","C"],
-                          displayName:(x)=> x,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
+
+
 
 
 
@@ -108,33 +107,7 @@ class _StuffState extends State<Stuff> {
                 ),
               ),
             ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: CustomActionButton(
-                    title: "Save",
-                    isExpanded: true,
-                    isOutline: true,
-                    margin: EdgeInsets.only(left: 24, bottom: 24, right: 8, top: 44),
-                    onTap: (){
-                      print("Do nothign");
-                    },
-                  ),
-                ),
-                Expanded(
-                  child: CustomActionButton(
-                    title: "Next",
-                    isExpanded: true,
-                    margin: EdgeInsets.only(left: 8, bottom: 24, right:24, top: 44),
-                    onTap: (){
-                      if(_validate()){
-                        print('${_name.text}\n${_emailAddress.text}\n${_contactNumber.text}\n${_address.text}\n${_serviceOffered.text}\n${_selectService.text}');
-                      }
-                    },
-                  ),
-                ),
-              ],
-            ),
+
           ],
         ),
       ),

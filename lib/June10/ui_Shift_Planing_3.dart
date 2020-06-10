@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
+import '../widgets.dart';
+import '../data/data.dart';
 class ShiftPlaning3 extends StatefulWidget {
   @override
   _ShiftPlaning3State createState() => _ShiftPlaning3State();

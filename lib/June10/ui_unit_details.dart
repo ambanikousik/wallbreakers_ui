@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
+import '../widgets.dart';
+import '../data/data.dart';
 
 class UnitDetails extends StatefulWidget {
   @override
@@ -27,9 +27,7 @@ class _UnitDetailsState extends State<UnitDetails> {
   Widget build(BuildContext context) {
     ScreenSize().init(context);
     return Scaffold(
-      appBar: CustomAppBar(
-        title: 'Complex Manager',
-      ),
+
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: width * 6),
         child: Column(
@@ -39,7 +37,7 @@ class _UnitDetailsState extends State<UnitDetails> {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    InAppTitle(title: 'Unit Details',),
+
                     Column(
                       children: <Widget>[
                         CustomTextField(

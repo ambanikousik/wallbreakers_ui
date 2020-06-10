@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
-class Stuff3 extends StatefulWidget {
+import '../widgets.dart';
+import '../data/data.dart';
+
+class Stuff4 extends StatefulWidget {
   @override
-  _Stuff3State createState() => _Stuff3State();
+  _Stuff4State createState() => _Stuff4State();
 }
 
-class _Stuff3State extends State<Stuff3> {
-  CustomTextFieldController _education = CustomTextFieldController();
-  CustomTextFieldController _basicBio = CustomTextFieldController();
-  CustomTextFieldController _category = CustomTextFieldController();
+class _Stuff4State extends State<Stuff4> {
+
+  CustomTextFieldController _sickLeaves = CustomTextFieldController();
+  CustomTextFieldController _paidLeaves = CustomTextFieldController();
+  CustomTextFieldController _casualLeaves = CustomTextFieldController();
 
 
   bool _validate() {
-    return _education.isValid &&
-        _basicBio.isValid &&
-        _category.isValid ;
+    return _sickLeaves.isValid &&
+        _paidLeaves.isValid &&
+        _casualLeaves.isValid ;
 
 
   }
@@ -41,25 +43,23 @@ class _Stuff3State extends State<Stuff3> {
 
 
                         CustomTextField(
-                          title: "Education",
-                          controller: _education,
+                          title: "Sick Leaves",
+                          controller: _sickLeaves,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
                         ),
 
                         CustomTextField(
-                          title: "Basic Bio",
-                          controller: _basicBio,
+                          title: "Paid Leaves",
+                          controller: _paidLeaves,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
                         ),
-                        CustomDropDownList<String>(
-                          title: "Category",
-                          controller: _category,
-                          loadData:() async => ["A","B","C"],
-                          displayName:(x)=> x,
+                        CustomTextField(
+                          title: "Casual Leaves",
+                          controller: _casualLeaves,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
@@ -95,12 +95,12 @@ class _Stuff3State extends State<Stuff3> {
                 ),
                 Expanded(
                   child: CustomActionButton(
-                    title: "Next",
+                    title: "Confirm",
                     isExpanded: true,
                     margin: EdgeInsets.only(left: 8, bottom: 24, right:24, top: 44),
                     onTap: (){
                       if(_validate()){
-                        print('${_education.text}\n${_basicBio.text}\n${_category.text}');
+                        print('${_sickLeaves.text}\n${_paidLeaves.text}\n${_casualLeaves.text}');
                       }
                     },
                   ),

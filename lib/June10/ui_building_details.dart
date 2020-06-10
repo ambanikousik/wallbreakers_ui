@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
-class ShiftPlaning extends StatefulWidget {
+import '../widgets.dart';
+import '../data/data.dart';
+
+class BuildingDetails extends StatefulWidget {
   @override
-  _ShiftPlaningState createState() => _ShiftPlaningState();
+  _BuildingDetailsState createState() => _BuildingDetailsState();
 }
 
-class _ShiftPlaningState extends State<ShiftPlaning> {
-  CustomTextFieldController _shiftType = CustomTextFieldController();
-  CustomTextFieldController _shiftName = CustomTextFieldController();
-  CustomTextFieldController _startTime = CustomTextFieldController();
-  CustomTextFieldController _endTime = CustomTextFieldController();
+class _BuildingDetailsState extends State<BuildingDetails> {
+  CustomTextFieldController _buildingName = CustomTextFieldController();
+  CustomTextFieldController _latitude = CustomTextFieldController();
+  CustomTextFieldController _longitude = CustomTextFieldController();
+  CustomTextFieldController _attachedGate = CustomTextFieldController();
 
 
   bool _validate() {
-    return _startTime.isValid &&
-        _shiftName.isValid &&
-        _shiftType.isValid &&
-        _endTime.isValid ;
+    return _buildingName.isValid &&
+        _latitude.isValid &&
+        _longitude.isValid &&
+        _attachedGate.isValid ;
 
   }
   @override
@@ -25,7 +26,7 @@ class _ShiftPlaningState extends State<ShiftPlaning> {
     ScreenSize().init(context);
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Garden Square',
+        title: 'Complex Manager',
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: width * 6),
@@ -36,41 +37,40 @@ class _ShiftPlaningState extends State<ShiftPlaning> {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    InAppTitle(title: 'Shift Planing',),
+                    InAppTitle(title: 'Building Details',),
                     Column(
                       children: <Widget>[
+                        CustomTextField(
+                          title: "Building Name",
+                          controller: _buildingName,
+                          validate: Validate.withOption(
+                            isRequired: true,
+                          ),
+                        ),
 
+                        CustomTextField(
+                          title: "Latitude",
+                          controller: _latitude,
+                          validate: Validate.withOption(
+                            isRequired: true,
+                          ),
+                        ),
+                        CustomTextField(
+                          title: "Longitude",
+                          controller: _longitude,
+                          validate: Validate.withOption(
+                            isRequired: true,
+                          ),
+                        ),
                         CustomDropDownList<String>(
-                          title: "Shift Type",
-                          controller: _shiftType,
-                          loadData:() async => ["General","Other"],
+                          title: "Attached Gate",
+                          controller: _attachedGate,
+                          loadData:() async => ["A","B","C"],
                           displayName:(x)=> x,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
                         ),
-                        CustomTextField(
-                          title: "Shift Name",
-                          controller: _shiftName,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
-                        CustomTextField(
-                          title: "Start Time",
-                          controller: _startTime,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
-                        CustomTextField(
-                          title: "End Time",
-                          controller: _endTime,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
-
 
 
                       ],
@@ -94,12 +94,12 @@ class _ShiftPlaningState extends State<ShiftPlaning> {
                 ),
                 Expanded(
                   child: CustomActionButton(
-                    title: "Next",
+                    title: "Define Unit",
                     isExpanded: true,
                     margin: EdgeInsets.only(left: 8, bottom: 24, right:24, top: 44),
                     onTap: (){
                       if(_validate()){
-                        print('${_shiftType.text}\n${_shiftName.text}\n${_startTime.text}\n${_endTime.text}');
+                        print('${_buildingName.text}\n${_latitude.text}\n${_longitude.text}\n${_attachedGate.text}');
                       }
                     },
                   ),

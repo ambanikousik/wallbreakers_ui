@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
+import '../widgets.dart';
+import '../data/data.dart';
 
 
 class ShiftPlaning2 extends StatefulWidget {

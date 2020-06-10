@@ -1,24 +1,21 @@
 import 'package:flutter/material.dart';
-import 'widgets.dart';
-import 'data/data.dart';
-
-class BuildingDetails extends StatefulWidget {
+import '../widgets.dart';
+import '../data/data.dart';
+class Shift4 extends StatefulWidget {
   @override
-  _BuildingDetailsState createState() => _BuildingDetailsState();
+  _Shift4State createState() => _Shift4State();
 }
 
-class _BuildingDetailsState extends State<BuildingDetails> {
-  CustomTextFieldController _buildingName = CustomTextFieldController();
-  CustomTextFieldController _latitude = CustomTextFieldController();
-  CustomTextFieldController _longitude = CustomTextFieldController();
-  CustomTextFieldController _attachedGate = CustomTextFieldController();
+class _Shift4State extends State<Shift4> {
+
+  CustomTextFieldController _startTime = CustomTextFieldController();
+  CustomTextFieldController _endTime = CustomTextFieldController();
 
 
   bool _validate() {
-    return _buildingName.isValid &&
-        _latitude.isValid &&
-        _longitude.isValid &&
-        _attachedGate.isValid ;
+    return _startTime.isValid &&
+
+        _endTime.isValid ;
 
   }
   @override
@@ -26,7 +23,7 @@ class _BuildingDetailsState extends State<BuildingDetails> {
     ScreenSize().init(context);
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Complex Manager',
+        title: 'Garden Square',
       ),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: width * 6),
@@ -37,38 +34,26 @@ class _BuildingDetailsState extends State<BuildingDetails> {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
-                    InAppTitle(title: 'Building Details',),
+                    InAppTitle(title: 'Shift Planing',),
                     Column(
                       children: <Widget>[
+
+
                         CustomTextField(
-                          title: "Building Name",
-                          controller: _buildingName,
+                          title: "Start Time",
+                          controller: _startTime,
+                          validate: Validate.withOption(
+                            isRequired: true,
+                          ),
+                        ),
+                        CustomTextField(
+                          title: "End Time",
+                          controller: _endTime,
                           validate: Validate.withOption(
                             isRequired: true,
                           ),
                         ),
 
-                        CustomTextField(
-                          title: "Latitude",
-                          controller: _latitude,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
-                        CustomTextField(
-                          title: "Longitude",
-                          controller: _longitude,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
-                        CustomTextField(
-                          title: "Attached Gate",
-                          controller: _attachedGate,
-                          validate: Validate.withOption(
-                            isRequired: true,
-                          ),
-                        ),
 
 
                       ],
@@ -92,12 +77,12 @@ class _BuildingDetailsState extends State<BuildingDetails> {
                 ),
                 Expanded(
                   child: CustomActionButton(
-                    title: "Define Unit",
+                    title: "Next",
                     isExpanded: true,
                     margin: EdgeInsets.only(left: 8, bottom: 24, right:24, top: 44),
                     onTap: (){
                       if(_validate()){
-                        print('${_buildingName.text}\n${_latitude.text}\n${_longitude.text}\n${_attachedGate.text}');
+                        print('${_startTime.text}\n${_endTime.text}');
                       }
                     },
                   ),
