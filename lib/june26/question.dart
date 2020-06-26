@@ -23,7 +23,7 @@ class _QuestionState extends State<Question> {
     return _questionText.isValid &&
         _addImage.isValid &&
         _uploadSolution.isValid &&
-        _answers.isValid ;
+        _answers.isValid;
 
 
 
@@ -78,7 +78,7 @@ class _QuestionState extends State<Question> {
                           ),
                         ),
 
-                       
+
 
 
 
