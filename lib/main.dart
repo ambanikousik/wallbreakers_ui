@@ -3,6 +3,7 @@ import 'package:wallbreakersui/June10/adHocVisitor.dart';
 import 'package:wallbreakersui/June10/expectingDelivery.dart';
 import 'package:wallbreakersui/June10/expectingTexi.dart';
 import 'package:wallbreakersui/June10/gatePass.dart';
+import 'package:wallbreakersui/June10/ui_grade.dart';
 import 'package:wallbreakersui/June10/ui_resident.dart';
 import 'package:wallbreakersui/June10/ui_staff.dart';
 import 'package:wallbreakersui/June10/ui_staff2.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ShiftPlaning(),
+      home: Grade(),
     );
   }
 }
